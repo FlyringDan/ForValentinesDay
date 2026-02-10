@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Я стану водопадом</title>
+    <style>
+                * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .valentine-box {
+            border: 3px solid #d81b60;          /* тёмно-розовая рамка */
+            background-color: #fce4ec;          /* светло-розовый фон */
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(216, 27, 96, 0.25);
+            max-width: 90%;
+            width: 460px;
+        }
+        
+        .valentine-box p {
+            font-size: 64px;
+            font-weight: bold;
+            color: #c2185b;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .btn {
+            padding: 14px 36px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+        
+        .btn.yes { 
+            background: rgb(255 172 191); 
+            color: black; 
+            margin-right: 10px;
+        }
+        
+        .btn.no { 
+            background: white; 
+            color: black; 
+            margin-left: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .img {
+            left: 20px;
+            z-index: -1;
+        }
+
+    </style>
+</head>
+<body>
+<img src="peonies.png" alt="" class="img">
+    <div class="valentine-box">
+        <p>
+            Ты 
+        </p>
+        <div>
+            <button class="btn yes">Да</button>
+            <button class="btn no">Нет</button>
+        </div>
+    </div>
+</body>
+</html>
