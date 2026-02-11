@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>Я стану водопадом</title>
     <style>
-                * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
             display: flex;
             justify-content: center;
@@ -14,32 +12,27 @@
             background: linear-gradient(135deg, #fff0f5, #ffe4e1);
             font-family: 'Arial', sans-serif;
         }
-        
+
         .valentine-box {
-            border: 3px solid #d81b60;          /* тёмно-розовая рамка */
-            background-color: #fce4ec;          /* светло-розовый фон */
+            border: 3px solid #d81b60;
+            background-color: #fce4ec;
             border-radius: 24px;
             padding: 40px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(216, 27, 96, 0.25);
             max-width: 90%;
             width: 460px;
+            position: relative;
         }
-        
+
         .valentine-box p {
-            font-size: 64px;
+            font-size: 36px;
             font-weight: bold;
             color: #c2185b;
             margin-bottom: 30px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
-        
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        
+
         .btn {
             padding: 14px 36px;
             border: none;
@@ -48,47 +41,96 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            min-width: 100px;
+            min-width: 100px;   
         }
-        
-        .btn.yes { 
-            background: rgb(255 172 191); 
-            color: black; 
+
+        .btn.yes {
+            background: rgb(255 172 191);
+            color: black;
             margin-right: 10px;
         }
-        
-        .btn.no { 
-            background: white; 
-            color: black; 
+
+        .btn.no {
+            background: rgb(230, 87, 87);
+            color: black;
             margin-left: 10px;
+            transition: all 0.4s ease;
         }
-        
+
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
-        
+
         .btn:active {
             transform: translateY(1px);
         }
 
-        .img {
-            left: 20px;
+        .side-flower {
+            position: fixed;
+            top: 0;
+            height: 100%;
+            width: 600px;
             z-index: -1;
+            background-size: cover;
+            background-repeat: no-repeat;
         }
 
+        .side-flower.left {
+            left: 0;
+            background-image: url('peonies.png');
+        }
+
+        .side-flower.right {
+            right: 0;
+            background-image: url('peonies.png');
+            transform: scaleX(-1);
+        }
     </style>
 </head>
+
 <body>
-<img src="peonies.png" alt="" class="img">
+    <div class="side-flower left"></div>
+    <div class="side-flower right"></div>
     <div class="valentine-box">
-        <p>
-            Ты 
+        <p id="text">
+            Ты будешь моей валентинкой?
         </p>
         <div>
-            <button class="btn yes">Да</button>
-            <button class="btn no">Нет</button>
+            <button id="yes" class="btn yes" onclick="say_yes()">Да</button>
+            <button id="no" class="btn no" onclick="say_no()">Нет</button>
         </div>
     </div>
+    <script>
+        function say_yes() {
+            document.getElementById("yes").textContent = "Я так и знал, поэтому мы идём в ресторан ❤️";
+            document.getElementById("no").style.display = "none";
+            document.getElementById("text").style.display = "none";
+        }
+
+        function say_no() {
+            document.querySelector('.btn.no').addEventListener('click', (e) => {
+                e.preventDefault();
+                const container = document.querySelector('.valentine-box');
+                const containerRect = container.getBoundingClientRect();
+                const button = e.target;
+                const buttonWidth = button.offsetWidth;
+                const buttonHeight = button.offsetHeight;
+
+                // Вычисляем допустимую зону (с отступами)
+                const maxX = containerRect.width - buttonWidth - 40;
+                const maxY = containerRect.height - buttonHeight - 60;
+
+                // Генерируем случайные координаты
+                const randomX = Math.random() * maxX;
+                const randomY = Math.random() * maxY;
+
+                // Применяем новую позицию
+                button.style.position = 'absolute';
+                button.style.left = `${randomX}px`;
+                button.style.top = `${randomY}px`;
+            });
+        }
+    </script>
 </body>
 </html>
